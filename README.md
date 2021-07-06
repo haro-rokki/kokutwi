@@ -1,6 +1,5 @@
-これは`create-next-app`で作成した、Next.jsのテンプレートにeslint, stylelint, prettierの設定を適用したものです。
-
-また、React Testing Libraryが使用できるように設定しています。
+## Kokutwi
+twitterで取得した告知ツイートを表示するWEBアプリ
 
 ## Getting Started
 
