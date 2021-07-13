@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { Tweet } from 'react-twitter-widgets';
-import { Flex, Box, Heading, Spacer, Button } from '@chakra-ui/react';
+import { Flex, Box, Heading } from '@chakra-ui/react';
 import useSWR from 'swr';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -30,32 +30,36 @@ const Index: NextPage = () => {
         <Box p="2">
           <Heading size="md">Kokutwi</Heading>
         </Box>
-        <Spacer />
+        {/* ログイン機能実装までコメントアウト */}
+        {/* <Spacer />
         <Box>
-          <Button colorScheme="teal" mr="4">
-            Sign Up
-          </Button>
           <Button colorScheme="teal">Log in</Button>
+        </Box> */}
+      </Flex>
+      <Flex>
+        <Box mr={10}>
+          <Calendar
+            locale="ja-JP"
+            calendarType="US"
+            onChange={onChangeCalendarValue}
+            value={calendarValue}
+            onClickDay={(value) => {
+              const date = new Date(value);
+              setTweetIdPath(`${format(date, 'yyyyMM')}/${format(date, 'dd')}`);
+            }}
+          />
+        </Box>
+        <Box maxHeight={500} overflowY="scroll">
+          {kokutweets &&
+            kokutweets.map((kokutweet) => (
+              <Tweet
+                key={kokutweet}
+                tweetId={kokutweet}
+                options={{ width: '400' }}
+              />
+            ))}
         </Box>
       </Flex>
-      <Calendar
-        locale="ja-JP"
-        calendarType="US"
-        onChange={onChangeCalendarValue}
-        value={calendarValue}
-        onClickDay={(value) => {
-          const date = new Date(value);
-          setTweetIdPath(`${format(date, 'yyyyMM')}/${format(date, 'dd')}`);
-        }}
-      />
-      {kokutweets &&
-        kokutweets.map((kokutweet) => (
-          <Tweet
-            key={kokutweet}
-            tweetId={kokutweet}
-            options={{ width: '300' }}
-          />
-        ))}
     </>
   );
 };
