@@ -54,4 +54,3 @@ firebase.jsonにエミュレータの設定を書く
 ```bash
 firebase emulators:start --only firestore
 ```
-```
