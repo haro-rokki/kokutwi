@@ -4,7 +4,6 @@ import { Tweet } from 'react-twitter-widgets';
 import { Flex, Box, Heading } from '@chakra-ui/react';
 import useSWR from 'swr';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
 
 import { getKokutweets } from 'domains/firebase/services/get-kokutweet';
@@ -36,7 +35,7 @@ const Index: NextPage = () => {
           <Button colorScheme="teal">Log in</Button>
         </Box> */}
       </Flex>
-      <Flex>
+      <Flex justifyContent="center" mt={10}>
         <Box mr={10}>
           <Calendar
             locale="ja-JP"
