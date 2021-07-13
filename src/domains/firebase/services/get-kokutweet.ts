@@ -1,18 +1,16 @@
 import 'firebase/firestore';
 import { db } from 'lib/firebase';
-import { Kokutweet } from '../models/kokutweet';
 
-export const getKokutweet = async (path: string): Promise<Kokutweet | null> => {
+export const getKokutweets = async (path: string): Promise<string[]> => {
   if (!path) {
-    return null;
+    return [];
   }
-  const kokutweetRefs = await db.doc(path).get();
+  const kokutweetRefs = await db.collection(path).get();
 
-  if (!kokutweetRefs.exists) {
-    return null;
-  }
+  const kokutweets: string[] = [];
+  kokutweetRefs.forEach((kokutweet) => {
+    kokutweets.push(kokutweet.id);
+  });
 
-  const kokutweet = kokutweetRefs.data() as Kokutweet;
-
-  return kokutweet;
+  return kokutweets;
 };
